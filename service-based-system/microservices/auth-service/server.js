@@ -3,21 +3,21 @@ require('dotenv').config();
 
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 const authRoutes = require('./routes/authRoutes');
-const productRoutes = require('./routes/productRoutes'); // new
-const orderRoutes = require('./routes/orderRoutes');     // new
+const productRoutes = require('./routes/productRoutes');
+const orderRoutes = require('./routes/orderRoutes');
 const reviewRoutes = require('./routes/reviewRoutes');
 
 const app = express();
-
-// Middleware to parse JSON
+app.use(cors());
 app.use(express.json());
 
 // Routes
 app.use('/api/auth', authRoutes);
-app.use('/api/products', productRoutes); // new
-app.use('/api/orders', orderRoutes);     // new
+app.use('/api/products', productRoutes);
+app.use('/api/orders', orderRoutes);
 app.use('/api/reviews', reviewRoutes);
 
 // Get values from environment variables
